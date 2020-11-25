@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" th:href="@{/css/style1.css}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
@@ -16,24 +16,27 @@
 <div class="account-page">
     <div class="container">
         <div class="row">
-            <div class="col-2">
-                <img src="images/Untitled-1.png" width="100%">
+            <div class="col-8">
+                <img src="images/Untitled-1.png" width="300px" height="300px">
             </div>
 
-            <div class="col-2">
-                <div class="form-container">
+            <div class="col-4">
+                <div class="#">
                     <div class="form-btn">
-                        <span>Login</span>
+                        <span>Register</span>
                     </div>
 
                     <th:block th:if="${message}">
                         <p th:text="${message}" style="color: #ca2819"/>
                     </th:block>
-                    <form id="RegForm" th:action="@{/login}" th:object="${users}" method="post">
-                        <input  type="email" placeholder="Email" th:field="*{Email}">
-                        <input  type="password" placeholder="Password" th:field="*{Pass}">
-                        <button type="submit" class="btn">Login</button>
-                        <a href="/register">Register</a>
+                    <form id="RegForm" th:action="@{/register}" th:object="${users}" method="post">
+                        <input required  type="email" placeholder="Email" th:field="*{Email}">
+                        <input required  type="password" placeholder="Password" th:field="*{Pass}">
+                        <input required  type="text" placeholder="FullName" th:field="*{FullName}">
+                        <input required  type="text" placeholder="Address" th:field="*{Address}">
+                        <input required  type="text" placeholder="Phone" th:field="*{Phone}">
+                        <button type="submit" class="btn">Register</button>
+                        <a href="/login">Login now !</a>
                     </form>
                 </div>
             </div>
