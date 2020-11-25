@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- ------------Account-page------------------- -->
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/Untitled-1.png" width="100%">
+            </div>
+
+            <div class="col-2">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span>Login</span>
+                    </div>
+
+                    <th:block th:if="${message}">
+                        <p th:text="${message}" style="color: #ca2819"/>
+                    </th:block>
+                    <form id="RegForm" th:action="@{/login}" th:object="${users}" method="post">
+                        <input  type="email" placeholder="Email" th:field="*{Email}">
+                        <input  type="password" placeholder="Password" th:field="*{Pass}">
+                        <button type="submit" class="btn">Login</button>
+                        <a href="/register">Register</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ------------footer----------- -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <img src="/images/Untitled-1.png" style="width: 80%; height: 80%;margin-left: 9%;">
+            </div>
+            <div class="footer-col-2">
+                <img src="images/logo-white.png">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and
+                    Benefits of Sports Accessible to the Many</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>Youtube </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="Copyright">Copyright 2020 - By QuangHuy</p>
+    </div>
+</body>
+</html>

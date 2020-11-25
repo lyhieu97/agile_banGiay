@@ -9,19 +9,19 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer UsersID;
     private String Email;
-    private String Password;
+    private String Pass;
     private String FullName;
     private String Address;
     private String Phone;
     private Boolean Role;
-//Cai commit nay la vloan ko chuan lam
+
     public Users(){
     }
 
-    public Users(Integer usersID, String email, String password, String fullName, String address, String phone, Boolean role) {
+    public Users(Integer usersID, String email, String pass, String fullName, String address, String phone, Boolean role) {
         UsersID = usersID;
         Email = email;
-        Password = password;
+        Pass = pass;
         FullName = fullName;
         Address = address;
         Phone = phone;
@@ -33,7 +33,7 @@ public class Users {
         return "Users{" +
                 "UsersID=" + UsersID +
                 ", Email='" + Email + '\'' +
-                ", Password='" + Password + '\'' +
+                ", Password='" + Pass + '\'' +
                 ", FullName='" + FullName + '\'' +
                 ", Address='" + Address + '\'' +
                 ", Phone='" + Phone + '\'' +
@@ -57,12 +57,12 @@ public class Users {
         Email = email;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getPass() {
+        return Pass;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setPass(String pass) {
+        Pass = pass;
     }
 
     public String getFullName() {

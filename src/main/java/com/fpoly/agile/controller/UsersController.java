@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class UsersController {
-//Cai commit nay ko ok, ban nay` kieu gi y de tai ban # cu de day da ko can tai dau
     @Autowired
     private UsersService service;
 
