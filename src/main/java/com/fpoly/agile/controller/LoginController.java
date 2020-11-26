@@ -21,7 +21,7 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView("Login");
+        ModelAndView modelAndView = new ModelAndView("Page/View/Login");
         modelAndView.addObject("users", new Users());
         return modelAndView;
     }
@@ -31,17 +31,18 @@ public class LoginController {
         if(userService.login(users.getEmail(), users.getPass()) != null){
             session.setAttribute("Email", users.getEmail());
             session.setAttribute("Pass", users.getPass());
-            return "redirect:/";
-        }else{
+            return "redirect:/home";
+        }else {
             modelMap.put("message", "User's Invalid !");
-            return "Login";
+            return "Page/View/Login";
         }
     }
 
-    @RequestMapping(value = "logout",method = RequestMethod.GET)
-    public String logout(HttpSession session){
-        session.removeAttribute("Email");
-        session.removeAttribute("cart");
-        return "redirect:/login";
-    }
+//    @RequestMapping(value = "logout",method = RequestMethod.GET)
+//    public String logout(HttpSession session, ModelMap modelMap){
+//        session.removeAttribute("Email");
+//        session.removeAttribute("cart");
+//        modelMap.put("message", "Logout succes !");
+//        return "redirect:/";
+//    }
 }

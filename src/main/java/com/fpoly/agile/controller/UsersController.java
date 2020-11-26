@@ -5,6 +5,7 @@ import com.fpoly.agile.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,49 +17,48 @@ public class UsersController {
 
     @GetMapping("/userslist")
     public ModelAndView testPage(){
-        ModelAndView modelAndView = new ModelAndView("UsersList", "users", service.findAll());
+        ModelAndView modelAndView = new ModelAndView("Admin/Users/List", "users", service.findAll());
         return modelAndView;
     }
 
     @GetMapping("/usersupdate/{UsersID}")
     public String edit(@PathVariable Integer UsersID, Model model){
         model.addAttribute("users", service.get(UsersID));
-        return "Usersupdate";
+        return "Admin/Users/Update";
     }
     @PostMapping("/usersupdate")
-    public ModelAndView update(@ModelAttribute("users") Users user){
+    public ModelAndView update(@ModelAttribute("users") Users user, ModelMap modelMap){
         service.save(user);
-        ModelAndView modelAndView = new ModelAndView("UsersUpdate");
-        modelAndView.addObject("message", "Users id: " + user.getUsersID() + " updated successfully !");
+        ModelAndView modelAndView = new ModelAndView("Admin/Users/Update");
+        modelMap.put("message", "updated successful !");
         return modelAndView;
     }
 
     @GetMapping("/usersdelete/{UsersID}")
     public String delete(@PathVariable Integer UsersID, Model model){
         model.addAttribute("users", service.get(UsersID));
-        return "Usersdelete";
+        return "Admin/Users/Delete";
     }
     @PostMapping("/usersdelete")
-    public ModelAndView delete(@ModelAttribute("users") Users user){
-        service.delete(user.getUsersID());
-        ModelAndView modelAndView = new ModelAndView("UsersDelete");
-        modelAndView.addObject("message", "Users name " + user.getFullName() + " deleted successfully !");
-        return modelAndView;
+    public ModelAndView delete(@ModelAttribute("users") Users user,ModelMap modelMap) {
+            service.delete(user.getUsersID());
+            ModelAndView modelAndView = new ModelAndView("Admin/Users/Delete");
+            modelMap.put("message", "deleted successful !");
+            return modelAndView;
     }
-
     @GetMapping("/userscreate")
     public ModelAndView saveUser(){
-        ModelAndView modelAndView = new ModelAndView("UsersCreate");
+        ModelAndView modelAndView = new ModelAndView("Admin/Users/Create");
         modelAndView.addObject("users", new Users());
         return modelAndView;
     }
 
     @PostMapping("/userscreate")
-    public ModelAndView saveUser(@ModelAttribute("users") Users users){
+    public ModelAndView saveUser(@ModelAttribute("users") Users users,ModelMap modelMap){
         service.save(users);
-        ModelAndView modelAndView = new ModelAndView("UsersCreate");
+        ModelAndView modelAndView = new ModelAndView("Admin/Users/Create");
         modelAndView.addObject("users", new Users());
-        modelAndView.addObject("message", "User: " + users.getFullName() + " create successfully!");
+        modelMap.put("message", "created successful !");
         return modelAndView;
     }
 }

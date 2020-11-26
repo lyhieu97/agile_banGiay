@@ -19,7 +19,7 @@ public class RegisterController {
 
     @GetMapping("/register")
     public ModelAndView register(){
-        ModelAndView modelAndView = new ModelAndView("Register");
+        ModelAndView modelAndView = new ModelAndView("Page/View/Register");
         modelAndView.addObject("users", new Users());
         return modelAndView;
     }
@@ -29,6 +29,6 @@ public class RegisterController {
         service.save(user);
         model.addAttribute("user", new Users());
         model.addAttribute("message", "Register username: " + user.getEmail()+ " and password: " + user.getPass() + " successfully !");
-        return "Register";
+        return "Page/View/Register";
     }
 }

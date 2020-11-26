@@ -27,7 +27,7 @@
                     </div>
 
                     <th:block th:if="${message}">
-                        <p th:text="${message}" style="color: #ca2819"/>
+                        <p th:text="${message}" style="color: #1cc88a"/>
                     </th:block>
                     <form id="RegForm" th:action="@{/register}" th:object="${users}" method="post">
                         <input required  type="email" placeholder="Email" th:field="*{Email}">

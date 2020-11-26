@@ -20,19 +20,19 @@ public class ProductsController {
 
     @GetMapping("/productslist")
     public ModelAndView testPage(){
-        ModelAndView modelAndView = new ModelAndView("ProductsList", "products", service.findAll());
+        ModelAndView modelAndView = new ModelAndView("Admin/Products/List", "products", service.findAll());
         return modelAndView;
     }
 
     @GetMapping("/productsupdate/{ProductsID}")
     public String edit(@PathVariable Integer ProductsID, Model model){
         model.addAttribute("products", service.get(ProductsID));
-        return "ProductsUpdate";
+        return "Admin/Products/Update";
     }
     @PostMapping("/productsupdate")
     public ModelAndView update(@ModelAttribute("products") Products products){
         service.save(products);
-        ModelAndView modelAndView = new ModelAndView("ProductsUpdate");
+        ModelAndView modelAndView = new ModelAndView("Admin/Products/Update");
         modelAndView.addObject("message", "Products id: " + products.getProductsID() + " updated successfully !");
         return modelAndView;
     }
@@ -40,19 +40,19 @@ public class ProductsController {
     @GetMapping("/productsdelete/{ProductsID}")
     public String delete(@PathVariable Integer ProductsID, Model model){
         model.addAttribute("products", service.get(ProductsID));
-        return "ProductsDelete";
+        return "Admin/Products/Delete";
     }
     @PostMapping("/productsdelete")
     public ModelAndView delete(@ModelAttribute("products") Products products){
         service.delete(products.getProductsID());
-        ModelAndView modelAndView = new ModelAndView("ProductsDelete");
+        ModelAndView modelAndView = new ModelAndView("Admin/Products/Delete");
         modelAndView.addObject("message", "Products name " + products.getName() + " deleted successfully !");
         return modelAndView;
     }
 
     @GetMapping("/productscreate")
     public ModelAndView saveProduct(){
-        ModelAndView modelAndView = new ModelAndView("ProductsCreate");
+        ModelAndView modelAndView = new ModelAndView("Admin/Products/Create");
         modelAndView.addObject("products", new Products());
         return modelAndView;
     }
@@ -60,7 +60,7 @@ public class ProductsController {
     @PostMapping("/productscreate")
     public ModelAndView saveProduct(@ModelAttribute("products")Products products) {
         service.save(products);
-        ModelAndView modelAndView = new ModelAndView("ProductsCreate");
+        ModelAndView modelAndView = new ModelAndView("Admin/Products/Create");
         modelAndView.addObject("message", "Products: " + products.getName() + " create successfully !");
         return modelAndView;
     }

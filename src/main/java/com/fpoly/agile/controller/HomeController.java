@@ -15,6 +15,15 @@ public class HomeController {
     @GetMapping("/")
     public String HomePage(ModelMap modelMap){
         modelMap.put("Products", productsRepository.findAll());
-        return "Home";
+        return "Page/View/Home1";
+    }
+    @GetMapping("/home")
+    public String HomePage1(ModelMap modelMap){
+        modelMap.put("Products", productsRepository.findAll());
+        return "Page/View/Home";
+    }
+    @GetMapping("/admin")
+    public String AdminPage(ModelMap modelMap){
+        return "Admin/View/Home";
     }
 }

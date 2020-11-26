@@ -36,11 +36,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Home</div>
+            <div class="sidebar-brand-text mx-3">Admin</div>
         </a>
 
         <!-- Divider -->
@@ -48,7 +48,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="userslist">
+            <a class="nav-link" href="/userslist">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Users</span></a>
         </li>
@@ -66,7 +66,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/category">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Category</span></a>
         </li>
@@ -75,9 +75,16 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="news">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>News</span></a>
+        </li>
+        <hr class="sidebar-divider">
+
+        <li class="nav-item">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home Page</span></a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -302,143 +309,105 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <!--                <h1 class="h3 mb-2 text-gray-800">Tables</h1>-->
-                <!--                <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.-->
-                <!--                    For more information about DataTables, please visit the <a target="_blank"-->
-                <!--                                                                               href="https://datatables.net">official DataTables documentation</a>.</p>-->
-
-                <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 align="center" class="m-0 font-weight-bold text-primary">Products List</h6>
+                        <h6 align="center" class="m-0 font-weight-bold text-primary">Create Category</h6>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <p><a class="btn btn-primary" href="/productscreate">Add Products</a></p>
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>ProductsID</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Image</th>
-                                    <th>Size</th>
-                                    <th>Sex</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th>CategoryID</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>ProductsID</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Image</th>
-                                    <th>Size</th>
-                                    <th>Sex</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th>CategoryID</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <th:block th:each="Products : ${products}">
-                                    <tr>
-                                        <td th:text="${Products.ProductsID}"></td>
-                                        <td th:text="${Products.Name}"></td>
-                                        <td th:text="${Products.Quantity}"></td>
-                                        <td th:text="${Products.Price}"></td>
-                                        <td>
-                                            <img th:src="${'/img/'+Products.Image}" width="120">
-                                        </td>
-                                        <td th:text="${Products.Size}"></td>
-                                        <td th:text="${Products.Sex}"></td>
-                                        <td th:text="${Products.Description}"></td>
-                                        <td th:text="${Products.Status}"></td>
-                                        <td th:text="${Products.CategoryID}"></td>
-                                        <td>
-                                            <a th:href="@{/productsdelete/{ProductsID}(ProductsID=${Products.getProductsID()})}"> Delete</a>
-                                            <a th:href="@{/productsupdate/{ProductsID}(ProductsID=${Products.getProductsID()})}"> Update</a>
-                                        </td>
-                                    </tr>
-                                    </span>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <br/>
+                                <p><a class="btn btn-primary" href="/category">Back to category list</a></p>
+                                <th:block th:if="${message}">
+                                    <p align="center" style="color: #1cc88a" th:text="${message}"/>
                                 </th:block>
-                                </tbody>
-                            </table>
+                                <form th:action="@{/categorycreate}" th:object="${category}" method="post">
+                                    <!--                                    <input type="hidden" th:field="*{ProductsID}"/>-->
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input required type="text" class="form-control" id="name" placeholder="Enter name" name="name" th:field="*{Name}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="image">Image:</label>
+                                        <input required type="file" class="form-control" id="image" placeholder="Enter image" name="image" th:field="*{Image}">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                                <br/>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Logout</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Logout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level plugins -->
+    <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script th:src="@{/js/demo/datatables-demo.js}"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

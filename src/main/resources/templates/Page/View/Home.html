@@ -21,9 +21,9 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="#">Products</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a th:href="@{/userslist}">Admin</a></li>
-                    <li><a th:href="@{/login}">Login</a></li>
-                    <li><a th:href="@{/login/logout}">Logout</a></li>
+                    <li><a th:href="@{/admin}">Admin</a></li>
+                    <li><a style="color: #2e59d9">Welcome <span th:text="${session.Email}"></span> ! </a></li>
+                    <li><a th:href="@{/logout}">Logout</a></li>
                 </ul>
             </nav>
             <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>

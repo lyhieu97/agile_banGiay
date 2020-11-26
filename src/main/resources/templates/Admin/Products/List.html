@@ -36,11 +36,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Home</div>
+            <div class="sidebar-brand-text mx-3">Admin</div>
         </a>
 
         <!-- Divider -->
@@ -48,7 +48,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="/userslist">
+            <a class="nav-link" href="userslist">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Users</span></a>
         </li>
@@ -66,7 +66,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/category">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Category</span></a>
         </li>
@@ -75,9 +75,17 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="news">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>News</span></a>
+        </li>
+        <hr class="sidebar-divider">
+
+        <li class="nav-item">
+
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home Page</span></a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -302,49 +310,78 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <!--                <h1 class="h3 mb-2 text-gray-800">Tables</h1>-->
+                <!--                <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.-->
+                <!--                    For more information about DataTables, please visit the <a target="_blank"-->
+                <!--                                                                               href="https://datatables.net">official DataTables documentation</a>.</p>-->
+
+                <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 align="center" class="m-0 font-weight-bold text-primary">Update Users</h6>
+                        <h6 align="center" class="m-0 font-weight-bold text-primary">Products List</h6>
                     </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-7">
-                                <br/>
-                                <p><a class="btn btn-primary" href="/userslist">Back to users list</a></p>
-                                <th:block th:if="${message}">
-                                    <p align="center" th:text="${message}"/>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <p><a class="btn btn-primary" href="/productscreate">Add Products</a></p>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>ProductsID</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                    <th>Size</th>
+                                    <th>Sex</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>CategoryID</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>ProductsID</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                    <th>Size</th>
+                                    <th>Sex</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>CategoryID</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <th:block th:each="Products : ${products}">
+                                    <tr>
+                                        <td th:text="${Products.ProductsID}"></td>
+                                        <td th:text="${Products.Name}"></td>
+                                        <td th:text="${Products.Quantity}"></td>
+                                        <td th:text="${Products.Price}"></td>
+                                        <td>
+                                            <img th:src="${'/img/'+Products.Image}" width="120">
+                                        </td>
+                                        <td th:text="${Products.Size}"></td>
+                                        <td th:text="${Products.Sex}"></td>
+                                        <td th:text="${Products.Description}"></td>
+                                        <td th:text="${Products.Status}"></td>
+                                        <td th:text="${Products.CategoryID}"></td>
+                                        <td>
+                                            <a th:href="@{/productsdelete/{ProductsID}(ProductsID=${Products.getProductsID()})}"> Delete</a>
+                                            <a th:href="@{/productsupdate/{ProductsID}(ProductsID=${Products.getProductsID()})}"> Update</a>
+                                        </td>
+                                    </tr>
+                                    </span>
                                 </th:block>
-                                <form th:action="@{/usersupdate}" th:object="${users}" method="post">
-                                    <input type="hidden" th:field="*{UsersID}"/>
-                                    <div class="form-group">
-                                        <label for="email">Email:</label>
-                                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" th:field="*{Email}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password:</label>
-                                        <input type="text" class="form-control" id="password" placeholder="Enter password" name="password" th:field="*{Pass}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">FullName:</label>
-                                        <input type="text" class="form-control" id="fullname" placeholder="Enter fullname" name="fullname" th:field="*{FullName}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Address:</label>
-                                        <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" th:field="*{Address}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Phone:</label>
-                                        <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" th:field="*{Phone}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Role:</label>
-                                        <input type="text" class="form-control" id="role" placeholder="Enter role" name="role" th:field="*{Role}">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </form>
-                                <br/>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
                 </div>
 
             </div>
@@ -397,26 +434,19 @@
 <!-- Bootstrap core JavaScript-->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script th:src="@{/js/sb-admin-2.min.js}"></script>
-<script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
 <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
 <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
 <script th:src="@{/js/demo/datatables-demo.js}"></script>
-<script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

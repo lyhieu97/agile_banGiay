@@ -10,5 +10,6 @@ public interface UsersService {
     public void delete(Integer id);
     public Users get(Integer id);
     public Users login(String Email, String Password);
+    public Users role(Boolean Role);
 
 }

@@ -36,11 +36,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Home</div>
+            <div class="sidebar-brand-text mx-3">Admin</div>
         </a>
 
         <!-- Divider -->
@@ -66,7 +66,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/category">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Category</span></a>
         </li>
@@ -75,9 +75,16 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="news">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>News</span></a>
+        </li>
+        <hr class="sidebar-divider">
+
+        <li class="nav-item">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home Page</span></a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -304,43 +311,55 @@
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 align="center" class="m-0 font-weight-bold text-primary">Create Users</h6>
+                        <h6 align="center" class="m-0 font-weight-bold text-primary">Delete Products</h6>
                     </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-7">
                                 <br/>
-                                <p><a class="btn btn-primary" href="/userslist">Back to users list</a></p>
+                                <p><a class="btn btn-primary" href="/productslist">Back to products list</a></p>
                                 <th:block th:if="${message}">
-                                    <p align="center" th:text="${message}"/>
+                                    <p align="center" style="color: #1cc88a" th:text="${message}"/>
                                 </th:block>
-                                <form th:action="@{/userscreate}" th:object="${users}" method="post">
-<!--                                    <input type="hidden" th:field="*{UsersID}"/>-->
+                                <form th:action="@{/productsdelete}" th:object="${products}" method="post">
+                                    <input type="hidden" th:field="*{ProductsID}"/>
                                     <div class="form-group">
-                                        <label for="email">Email:</label>
-                                        <input required type="text" class="form-control" id="email" placeholder="Enter email" name="email" th:field="*{Email}">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" th:field="*{Name}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password:</label>
-                                        <input required type="text" class="form-control" id="password" placeholder="Enter password" name="password" th:field="*{Pass}">
+                                        <label for="quantity">Quantity:</label>
+                                        <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" th:field="*{Quantity}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">FullName:</label>
-                                        <input required type="text" class="form-control" id="fullname" placeholder="Enter fullname" name="fullname" th:field="*{FullName}">
+                                        <label for="price">Price:</label>
+                                        <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" th:field="*{Price}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Address:</label>
-                                        <input required type="text" class="form-control" id="address" placeholder="Enter address" name="address" th:field="*{Address}">
+                                        <label for="image">Image:</label>
+                                        <input type="file" class="form-control" id="image" placeholder="Enter image" name="image" th:field="*{Image}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Phone:</label>
-                                        <input required type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" th:field="*{Phone}">
+                                        <label for="size">Size:</label>
+                                        <input type="text" class="form-control" id="size" placeholder="Enter size" name="size" th:field="*{Size}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Role:</label>
-                                        <input required type="text" class="form-control" id="role" placeholder="Enter role" name="role" th:field="*{Role}">
+                                        <label for="sex">Sex:</label>
+                                        <input type="text" class="form-control" id="sex" placeholder="Enter sex" name="sex" th:field="*{Sex}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Add</button>
+                                    <div class="form-group">
+                                        <label for="description">Description:</label>
+                                        <input type="text" class="form-control" id="description" placeholder="Enter description" name="description" th:field="*{Description}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="status">Status:</label>
+                                        <input type="text" class="form-control" id="status" placeholder="Enter status" name="status" th:field="*{Status}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="categoryID">CategoryID:</label>
+                                        <input type="text" class="form-control" id="categoryID" placeholder="Enter categoryID" name="categoryID" th:field="*{CategoryID}">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Delete</button>
                                 </form>
                                 <br/>
                             </div>

@@ -38,4 +38,8 @@ public class UserServiceImpl implements UsersService {
     public Users login(String Email, String Password) {
         return rep.login(Email, Password);
     }
+    @Override
+    public Users role(Boolean Role){
+        return rep.role(Role);
+    }
 }

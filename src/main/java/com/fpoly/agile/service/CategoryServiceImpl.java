@@ -1,6 +1,9 @@
 package com.fpoly.agile.service;
 
 import com.fpoly.agile.model.Category;
+import com.fpoly.agile.model.Products;
+import com.fpoly.agile.repository.CategoryRepository;
+import com.fpoly.agile.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,30 +14,30 @@ import java.util.List;
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
-    CategoryService categoryService;
+    CategoryRepository categoryRepository;
 
     @Override
     public List<Category> findAll() {
-        return (List<Category>) categoryService.findAll();
+        return (List<Category>) categoryRepository.findAll();
     }
 
     @Override
     public void save(Category category){
-        categoryService.save(category);
+        categoryRepository.save(category);
     }
 
     @Override
     public void delete(Integer CategoryID){
-        categoryService.delete(CategoryID);
+        categoryRepository.deleteById(CategoryID);
     }
 
     @Override
     public Category get(Integer CategoryID){
-        return categoryService.get(CategoryID);
+        return categoryRepository.findById(CategoryID).get();
     }
 
     @Override
     public Category find(Integer CategoryID) {
-        return categoryService.find(CategoryID);
+        return categoryRepository.find(CategoryID);
     }
 }
