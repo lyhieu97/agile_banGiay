@@ -3,7 +3,6 @@ package com.fpoly.agile.service;
 import com.fpoly.agile.model.Category;
 import com.fpoly.agile.model.Products;
 import com.fpoly.agile.repository.CategoryRepository;
-import com.fpoly.agile.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +39,6 @@ public class CategoryServiceImpl implements CategoryService {
     public Category find(Integer CategoryID) {
         return categoryRepository.find(CategoryID);
     }
+
+
 }

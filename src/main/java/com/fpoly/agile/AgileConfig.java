@@ -40,36 +40,6 @@ public class AgileConfig {
     @Autowired
     private ApplicationContext applicationContext;
 
-//    @Bean
-//    public IProductRepository iProductRepository(){
-//        return new
-//    }
-
-//    @Bean
-//    public SpringResourceTemplateResolver templateResolver() {
-//        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-//        templateResolver.setApplicationContext(this.applicationContext);
-//        templateResolver.setPrefix("/WEB-INF/views/");
-//        templateResolver.setSuffix(".html");
-//        templateResolver.setTemplateMode(TemplateMode.HTML);
-//        templateResolver.setCacheable(true);
-//        return templateResolver;
-//    }
-//
-//    @Bean
-//    public SpringTemplateEngine templateEngine() {
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.setTemplateResolver(templateResolver());
-//        templateEngine.setEnableSpringELCompiler(true);
-//        return templateEngine;
-//    }
-
-    //    @Bean
-//    public ViewResolver viewResolver() {
-//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//        viewResolver.setTemplateEngine(templateEngine());
-//        return viewResolver;
-//    }
     //Cấu hình JPA
     @Bean
     @Qualifier(value = "entityManager")

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite</title>
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" width="125px"></a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/news1">News</a></li>
+                <li><a href="/favorite">Favorite</a></li>
+            </ul>
+        </nav>
+        <a href="/favorite"><img src="images/cart.png" width="30px" height="30px"></a>
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+</div>
+
+<!-- -----------------cart item details------------------- -->
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Favorite list</th>
+            <th>Action</th>
+        </tr>
+        <th:block th:each="Item : ${session.favorite}">
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img th:src="${'/img/' + Item.Products.Image}" width="120">
+                    <div>
+                        <p th:text="${Item.Products.Name}"></p>
+                        <small th:text="${Item.Products.Price} + VNĐ"></small>
+                        <br>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-danger" th:href="@{/favorite/delete/{ProductsId}(ProductsId=${Item.Products.getProductsID()})}">X</a>
+            </td>
+        </tr>
+        </th:block>
+    </table>
+    <a class="btn" href="/products">Back</a>
+</div>
+<!-- ------------footer----------- -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <img src="/images/Untitled-1.png" style="width: 80%; height: 80%;margin-left: 9%;">
+            </div>
+            <div class="footer-col-2">
+                <img src="images/logo-white.png">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and
+                    Benefits of Sports Accessible to the Many</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>Youtube </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="Copyright">Copyright 2020 - By QuocHuy</p>
+    </div>
+    <!-- ------------------- js for toggle menu-------------- -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            }
+            else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
